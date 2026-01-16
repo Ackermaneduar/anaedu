@@ -7,7 +7,7 @@ import pandas as pd
 from datetime import datetime
 
 # --- CONFIGURACIÓN INICIAL ---
-st.set_page_config(page_title="Nuestro Espacio Privado ❤️", layout="wide")
+st.set_page_config(page_title="Ana y Edu", layout="wide")
 
 # Base de datos compatible con DB Browser
 DB_NAME = "datos_pareja.db"
@@ -34,13 +34,13 @@ USUARIOS = {
 }
 
 def login():
-    st.markdown("<h1 style='text-align: center;'>❤️ Nuestro Espacio</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center;'>❤️</h1>", unsafe_allow_html=True)
     with st.container():
         col1, col2, col3 = st.columns([1,2,1])
         with col2:
             usuario = st.text_input("Usuario")
             password = st.text_input("Contraseña", type="password")
-            if st.button("Entrar al mundo de nosotros"):
+            if st.button("Ingresar"):
                 if usuario in USUARIOS and USUARIOS[usuario] == password:
                     st.session_state["logueado"] = True
                     st.session_state["usuario"] = usuario
@@ -67,7 +67,7 @@ def seccion_status():
             st.error("❌ El sitio está caído o la URL es inválida.")
 
 def seccion_finanzas():
-    st.header("💰 Centro Financiero de Pareja")
+    st.header("💰 Centro Financiero")
     tab1, tab2, tab3, tab4 = st.tabs(["📊 Resumen", "✍️ Registrar", "📜 Historial Completo", "🎯 Metas"])
     conn = sqlite3.connect(DB_NAME)
     
@@ -147,11 +147,11 @@ def seccion_finanzas():
     conn.close()
 
 def seccion_chat():
-    st.header("💬 Notas de Amor")
+    st.header("💬 Notas")
     
     # ... (El código de guardar nota es el mismo, funciona bien) ...
     with st.container():
-        nota = st.text_area("Escribe algo lindo para hoy...")
+        nota = st.text_area("Escribe algo para hoy...")
         if st.button("Dejar Nota"):
             if nota:
                 conn = sqlite3.connect(DB_NAME)
@@ -188,7 +188,7 @@ def seccion_fotos():
     foto = st.file_uploader("Sube una foto especial", type=["jpg", "png", "jpeg"])
     if foto:
         st.image(foto, caption="¡Hermoso recuerdo!", use_container_width=True)
-    st.info("Nota: Las fotos se muestran al subir, para guardarlas permanentemente se requiere un servidor de archivos.")
+    st.info("")
 
 # --- LÓGICA PRINCIPAL ---
 init_db()
